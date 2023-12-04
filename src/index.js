@@ -54,6 +54,7 @@ root.render(
                 handleBg: "var(--light-col-1)",
                 colorPrimary: "var(--elt-col-1)",
                 colorPrimaryHover: "var(--elt-col-3)",
+                colorPrimaryBorder: "var(--elt-col-3)",
                 colorTextTertiary: "var(--dark-col-4)",
                 colorTextQuaternary: "var(--dark-col-3)"
             },

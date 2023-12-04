@@ -99,6 +99,8 @@ vec2 shift(vec2 z, vec2 a) {
 The coloring function.
 */
 
+#define invRadSq invRad * invRad
+
 vec3 tilingSample(vec2 pt) {
     // Remap point to screen and move it around
     vec2 z = (2. * pt - resolution) / scale;
@@ -109,7 +111,7 @@ vec3 tilingSample(vec2 pt) {
     
     // Repeatedly invert and reflect until we are within the fundamental domain
     bool fund;
-    float distSq;
+    float distSq, dotProd;
     vec2 diff;
     float n = 0.;
     for (int i = 0; i < nIterations; i ++) {
@@ -118,16 +120,17 @@ vec3 tilingSample(vec2 pt) {
         // Edge
         diff = z - invCen;
         distSq = normSq(diff);
-        if (distSq < invRad * invRad) {
+        if (distSq < invRadSq) {
             fund = false;
-            z = invCen + (invRad * invRad * diff) / distSq;
+            z = invCen + (invRadSq * diff) / distSq;
             n ++;
         }
 
         // Sectional line
-        if (dot(z, refNrm) < 0.) {
+        dotProd = dot(z, refNrm);
+        if (dotProd < 0.) {
             fund = false;
-            z -= 2. * dot(z, refNrm) * refNrm;
+            z -= 2. * dotProd * refNrm;
             n ++;
         }
 

@@ -5,7 +5,7 @@
 }
 
 .toggle-parent:not(:last-child) {
-    padding-bottom: var(--component-spacing);
+    padding-bottom: var(--small-spacing);
 }
 
 .toggle-label {

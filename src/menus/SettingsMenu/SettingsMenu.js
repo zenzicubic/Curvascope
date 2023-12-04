@@ -93,7 +93,7 @@ function AppearanceMenu() {
             <Select 
                 defaultValue={params[0].modelIdx} style={{ 
                     width: "100%", 
-                    marginBottom: "var(--component-spacing)" }}
+                    marginBottom: "var(--small-spacing)" }}
                 options={modelNames} onChange={(val) => params[1]({...params[0], modelIdx: val})} />
             <LabelledToggle
                 lbl="Show Polygon Edges" toggled={params[0].doEdges} 
