@@ -221,7 +221,7 @@ function App() {
             return;
         }
 
-        // Remap mouse position to screen
+        // Remap mouse position to screen/disk
         let modelMap = modelMaps[params.modelIdx];
         let currPos = getMouseCoord(evt);
         let scrnPos = new Complex(
@@ -230,7 +230,7 @@ function App() {
         let diskPos = modelMap(scrnPos);
 
         // Update disk position
-        if (diskPos.normSq() <= 1) {
+        if (diskPos.normSq() < 1) {
             setVector2Uniform("mousePos", diskPos);
         } else { 
             endInteraction();

@@ -20,7 +20,8 @@ const modelNames = [
     { label: "Upper half-plane model", value: 1 },
     { label: "Beltrami-Klein disk", value: 2 },
     { label: "Gans model", value: 3 },
-    { label: "Band model", value: 4 }
+    { label: "Band model", value: 4 },
+    { label: "Poincar\u00E9 disk complement", value: 5 }
 ];
 
 /*

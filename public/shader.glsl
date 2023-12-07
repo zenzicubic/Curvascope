@@ -57,7 +57,7 @@ vec2 cdiv(vec2 a, vec2 b) {
 }
 
 vec2 cexp(vec2 z) { 
-    // Complex sine
+    // Complex exponential
     return vec2(cos(z.y), sin(z.y)) * exp(z.x);
 }
 
@@ -68,24 +68,29 @@ vec2 ctanh(vec2 z) {
 }
 
 #define PI 3.14159265358
+#define INV_SCALE 2.5
 #define GANS_SCALE 10.
 
 vec2 remapToDisk(vec2 z) {
     // Remaps the point from the given model to the Poincare disk
-    if (modelIdx == 1) {
-        // Half-plane model
-        z.y++;
-        return cdiv(z - CMP_I, z + CMP_I);
-    } else if (modelIdx == 2) {
-        // Klein model
-        return z / (1. + sqrt(1. - normSq(z)));
-    } else if (modelIdx == 3) {
-        // Gans model
-        z *= GANS_SCALE;
-        return z / (1. + sqrt(1. + normSq(z)));
-    } else if (modelIdx == 4) {
-        // Band model
-        return ctanh(z);
+    switch (modelIdx) {
+        case 1:
+            // Half-plane model
+            z.y++;
+            return cdiv(z - CMP_I, z + CMP_I);
+        case 2:
+            // Klein model
+            return z / (1. + sqrt(1. - normSq(z)));
+        case 3:
+            // Gans model
+            z *= GANS_SCALE;
+            return z / (1. + sqrt(1. + normSq(z)));
+        case 4:
+            // Band model
+            return ctanh(z);
+        case 5:
+            // Inverted Poincare disk model
+            return cinv(z * INV_SCALE);
     }
     return z;
 }

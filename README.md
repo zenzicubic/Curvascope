@@ -1,8 +1,8 @@
 # Curvascope
-Curvascope is an open-source online viewer for hyperbolic regular tilings. It is built using React,
-with ThreeJS/WebGL for rendering and realtime, and Ant Design for the UI. It produces hyperbolic 
-tiling images by means of iterated circle inversions and Euclidean reflections based on Coxeter
-groups. 
+Curvascope is an open-source online viewer for hyperbolic regular tilings.  Curvascope is built
+using React, with ThreeJS/WebGL for rendering and realtime, and Ant Design for the UI. It produces
+hyperbolic tiling images by means of iterated circle inversions and Euclidean reflections based on
+Coxeter groups. 
 
 ![Program view](/sample_images/screenshot.png)
 ![A red {8, 8} hyperbolic tiling with fundamental triangles in the Poincare model](/sample_images/example1.png)
@@ -12,7 +12,7 @@ groups.
 # Features
 - Realtime rendering using WebGL
 - Interaction in real-time: moving around using Mobius transformations and the mouse
-- Several of the most common models of the hyperbolic plane
+- Six of the most common models of the hyperbolic plane
 - Arbitrary tilings by Schlafli symbol
 - Sharing of patterns via links
 - Animation of tiling backgrounds

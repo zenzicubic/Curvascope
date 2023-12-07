@@ -34,12 +34,6 @@ class Complex {
     // Divides a complex number by a real number
     divRe(k) { return this.mulRe(1 / k); }
 
-    // Multiplies the current complex number by i
-    itimes() { return new Complex(-this.y, this.x); }
-
-    // Multiplies the current complex number by -i
-    negitimes() { return new Complex(this.y, -this.x); }
-
     // Conjugate of the current complex number
     conj() { return new Complex(this.x, -this.y); }
 
@@ -67,11 +61,13 @@ const versor = (t) => new Complex(Math.cos(t), Math.sin(t));
 // Constants
 const CMP_ONE = new Complex(1, 0);
 const CMP_I = new Complex(0, 1);
-const gansScale = 10;
 
 /*
 Mappings from various models of the hyperbolic plane to Poincare disk model.
 */
+
+const gansScale = 10;
+const invScale = 2.5;
 
 const modelMaps = [
     (z) => z, // Poincare disk model (default)
@@ -84,7 +80,8 @@ const modelMaps = [
         z = z.mulRe(gansScale);
         return z.divRe(1 + Math.sqrt(1 + z.normSq()));
     },
-    (z) => z.tanh() // Band model
+    (z) => z.tanh(), // Band model
+    (z) => z.mulRe(invScale).reciprocal() // Inverted Poincare model
 ];
 
 /*
