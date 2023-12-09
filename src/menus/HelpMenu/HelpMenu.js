@@ -32,7 +32,7 @@ const items = [
     {
         key: "help3",
         label: "How do I use this?",
-        children: <p>The main window of Curvascope displays the tiling. To move it around in the hyperbolic plane, drag your mouse around inside the disk. To change the settings and tiling (i.e. model of the hyperbolic plane, coloring, and rendering settings), click on <strong>Settings</strong>. Note that enabling antialiasing or using larger iteration counts may have an impact on performance. To save an image of your tiling, click on <strong>Save Image</strong>. To copy a shareable link to your clipboard, click on <strong>Copy Shareable Link</strong>.</p>,
+        children: <p>The main window of Curvascope displays the tiling. To move it around in the hyperbolic plane, drag your mouse around inside the disk. To change the settings and tiling (i.e. model of the hyperbolic plane, coloring, and rendering settings), click on <strong>Settings</strong>. Note that larger antialiasing step counts or using larger iteration counts may have an impact on performance. To save an image of your tiling, click on <strong>Save Image</strong>. To copy a shareable link to your clipboard, click on <strong>Copy Shareable Link</strong>.</p>,
     },
     {
         key: "help4",

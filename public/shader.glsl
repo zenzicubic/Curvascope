@@ -22,13 +22,14 @@ uniform bool doSolidColor;
 uniform bool doParity;
 
 // Rendering settings
-uniform bool doAntialias;
+uniform int nSamples;
+uniform float invSamples;
 uniform int nIterations;
 
 out vec4 outputCol;
 
 #define BG_COLOR vec3(.07)
-#define THICKNESS .02
+#define THICKNESS .01
 #define COLOR_COEFF 3.
 #define PARITY_COEFF .6
 
@@ -153,13 +154,12 @@ vec3 tilingSample(vec2 pt) {
     float brt = 1.;
     if (doEdges) {
         brt = distance(z, invCen) - invRad;
-        brt = smoothstep(0., THICKNESS, brt);
+        brt = step(THICKNESS, brt);
     } 
 
     // Show parity
-    if (doParity) {
+    if (doParity)
         brt = min(brt, mix(1., mod(n, 2.), PARITY_COEFF));
-    }
 
     // Coloring
     vec3 texCol = tileCol;
@@ -178,17 +178,20 @@ void main(void) {
     vec2 pt = gl_FragCoord.xy;
 
     // Antialiasing
-    vec3 color = tilingSample(pt);
-    if (doAntialias) {
-        color += tilingSample(pt + vec2(.5, 0.));
-        color += tilingSample(pt + vec2(-.5, 0.));
-        color += tilingSample(pt + vec2(0., .5));
-        color += tilingSample(pt + vec2(0., -.5));
-        color += tilingSample(pt + vec2(.5));
-        color += tilingSample(pt + vec2(-.5));
-        color += tilingSample(pt + vec2(-.5, .5));
-        color += tilingSample(pt + vec2(.5, -.5));
-        color *= .11111;
+    vec3 color;
+    if (nSamples > 1) {
+        vec2 diff;
+        for (int i = 0; i < nSamples; i ++) {
+            for (int j = 0; j < nSamples; j ++) {
+                diff = vec2(
+                    float(i) * invSamples - .5, 
+                    float(j) * invSamples - .5);
+                color += tilingSample(pt + diff);
+            }
+        }
+        color *= invSamples * invSamples;
+    } else {
+        color = tilingSample(pt);
     }
 
     outputCol = vec4(color, 1.);

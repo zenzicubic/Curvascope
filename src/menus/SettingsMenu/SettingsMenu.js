@@ -126,9 +126,9 @@ function RenderingMenu() {
         <LabelledSlider 
             lbl="Number of Iterations" min={20} max={100} value={params[0].nIterations}
             onChange={(val) => params[1]({...params[0], nIterations: val})} />
-        <LabelledToggle 
-            lbl="Perform Antialiasing" toggled={params[0].doAntialias}
-            onChange={(toggled) => params[1]({...params[0], doAntialias: toggled})} />
+        <LabelledSlider
+            lbl="Number of Antialiasing Steps" min={1} max={5} value={params[0].nSamples}
+            onChange={(val) => params[1]({...params[0], nSamples: val})} />
     </>);
 }
 

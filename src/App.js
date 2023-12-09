@@ -25,7 +25,7 @@ const ZERO = new Complex(0, 0);
 
 // Lists of parameters to share and copy
 const sharedParams = ["modelIdx", "doEdges", "doParity", "doSolidColor", "colIdx", "pValue", "qValue"];
-const uniformNames = ["doEdges", "doParity", "doSolidColor", "modelIdx", "doAntialias", "nIterations", "invRad"];
+const uniformNames = ["doEdges", "doParity", "doSolidColor", "modelIdx", "nIterations", "invRad", "nSamples"];
 
 const ParamContext = createContext();
 
@@ -37,7 +37,7 @@ function App() {
         nIterations: 50,
         colIdx: 0,
         modelIdx: 0,
-        doAntialias: true,
+        nSamples: 3,
         doEdges: true,
         doSolidColor: false,
         doParity: false,
@@ -71,10 +71,11 @@ function App() {
         invRad: {value: 0},
         modelIdx: {value: 0},
         nIterations: {value: 0},
+        invSamples: {value: 1},
+        nSamples: {value: 1},
         doEdges: {value: false},
         doSolidColor: {value: false},
-        doParity: {value: false},
-        doAntialias: {value: false}
+        doParity: {value: false}
     });
     
     // Window size and mouse things
@@ -317,6 +318,7 @@ function App() {
         for (let name of uniformNames) {
             setUniform(name, params[name]);
         }
+        setUniform("invSamples", 1 / params.nSamples);
         setVector2Uniform("refNrm", params.refNrm);
         setVector2Uniform("invCen", params.invCen);
 
