@@ -40,6 +40,12 @@ class Complex {
     // Squared norm of the current complex number
     normSq() { return this.x * this.x + this.y * this.y; }
 
+    // Norm of the current complex number
+    getNorm() { return Math.sqrt(this.normSq()); }
+
+    // Normalization of a complex number to length 1
+    getNormalized() { return this.divRe(this.getNorm()); }
+
     // Reciprocal of the current complex number
     reciprocal() { return this.conj().divRe(this.normSq()); }
 
@@ -66,8 +72,9 @@ const CMP_I = new Complex(0, 1);
 Mappings from various models of the hyperbolic plane to Poincare disk model.
 */
 
+// Scaling factors for various models
 const gansScale = 10;
-const invScale = 2.5;
+const mapScale = 3;
 
 const modelMaps = [
     (z) => z, // Poincare disk model (default)
@@ -76,12 +83,23 @@ const modelMaps = [
         return z.sub(CMP_I).div(z.add(CMP_I));
     },
     (z) => z.divRe(1 + Math.sqrt(1 - z.normSq())), // Beltrami-Klein model
+    (z) => z.mulRe(mapScale).reciprocal(), // Inverted Poincare model
     (z) => { // Gans model
         z = z.mulRe(gansScale);
         return z.divRe(1 + Math.sqrt(1 + z.normSq()));
     },
+    (z) => {
+        // Azimuthal equidistant projection
+        z = z.mulRe(mapScale);
+        let mag = Math.tanh(z.getNorm() * 0.5);
+        return z.getNormalized().mulRe(mag);
+    },
+    (z) => {
+        // Equal-area projection
+        z = z.mulRe(mapScale);
+        return z.divRe(Math.sqrt(1 + z.normSq()));
+    },
     (z) => z.tanh(), // Band model
-    (z) => z.mulRe(invScale).reciprocal() // Inverted Poincare model
 ];
 
 /*

@@ -69,7 +69,7 @@ vec2 ctanh(vec2 z) {
 }
 
 #define PI 3.14159265358
-#define INV_SCALE 2.5
+#define MAP_SCALE 3.
 #define GANS_SCALE 10.
 
 vec2 remapToDisk(vec2 z) {
@@ -83,15 +83,24 @@ vec2 remapToDisk(vec2 z) {
             // Klein model
             return z / (1. + sqrt(1. - normSq(z)));
         case 3:
+            // Inverted Poincare disk model
+            return cinv(z * MAP_SCALE);
+        case 4:
             // Gans model
             z *= GANS_SCALE;
             return z / (1. + sqrt(1. + normSq(z)));
-        case 4:
+        case 5:
+            // Azimuthal equidistant projection
+            z *= MAP_SCALE;
+            float len = tanh(.5 * length(z));
+            return normalize(z) * len;
+        case 6:
+            // Equal-area projection
+            z *= MAP_SCALE;
+            return z / sqrt(1. + normSq(z));
+        case 7:
             // Band model
             return ctanh(z);
-        case 5:
-            // Inverted Poincare disk model
-            return cinv(z * INV_SCALE);
     }
     return z;
 }

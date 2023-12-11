@@ -12,7 +12,7 @@ Coxeter groups.
 # Features
 - Realtime rendering using WebGL
 - Interaction in real-time: moving around using Mobius transformations and the mouse
-- Six of the most common models of the hyperbolic plane
+- Several of the most common models of the hyperbolic plane
 - Arbitrary tilings by Schlafli symbol
 - Sharing of patterns via links
 - Animation of tiling backgrounds

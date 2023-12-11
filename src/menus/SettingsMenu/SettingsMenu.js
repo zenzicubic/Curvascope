@@ -19,9 +19,11 @@ const modelNames = [
     { label: "Poincar\u00E9 disk", value: 0 },
     { label: "Upper half-plane model", value: 1 },
     { label: "Beltrami-Klein disk", value: 2 },
-    { label: "Gans model", value: 3 },
-    { label: "Band model", value: 4 },
-    { label: "Poincar\u00E9 disk complement", value: 5 }
+    { label: "Poincar\u00E9 disk complement", value: 3 },
+    { label: "Gans model", value: 4 },
+    { label: "Azimuthal equidistant projection", value: 5 },
+    { label: "Equal-area projection", value: 6 },
+    { label: "Band model", value: 7 }
 ];
 
 /*
