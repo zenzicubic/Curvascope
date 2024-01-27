@@ -47,13 +47,6 @@ body {
     margin: 0px;
 }
 
-* { 
-    /* For Firefox */
-    scrollbar-width: thin;
-
-    scrollbar-color: var(--elt-col-1);
-}
-
 p, h1, h2, h3 {
     color: var(--light-col-1);
 }
@@ -75,6 +68,10 @@ hr {
     background-color: var(--light-col-1);
 }
 
+/*
+Ant Design styles.
+*/
+
 .ant-collapse-header {
     /* This aligns the icons to the text */
     align-items: center !important;
@@ -84,6 +81,10 @@ hr {
     /* This sets the font size to be the same as the page */
     font-size: 1rem;
 }
+
+/*
+Scrollbar styles.
+*/
 
 ::-webkit-scrollbar { 
     width: var(--scr-width);
