@@ -40,11 +40,13 @@ CSS attributes used in multiple places.
 }
 
 body {
-    overflow: hidden;
-
     background-color: var(--dark-col-1);
     font-family: var(--font-family);
     margin: 0px;
+}
+
+#root {
+    overflow: hidden;
 }
 
 p, h1, h2, h3 {
